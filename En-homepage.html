@@ -41,6 +41,7 @@
     <header>
         <h1>Your Home Assistant Setup Assistance</h1>
         <p>Empowering Your Smart Home Experience</p>
+        <button onclick="toggleLanguage()">Toggle Language</button>
     </header>
 
     <section>
@@ -63,6 +64,22 @@
     <button onclick="window.location.href='En-pricing.html'">See Pricing</button>
     <button onclick="window.location.href='En-about-me.html'">See About me</button>
     <button onclick="window.location.href='En-our-service-regions.html'">To where we tailor</button>
+    
+    <script>
+        function toggleLanguage() {
+            // Get the current language from the HTML tag
+            const currentLang = document.documentElement.lang;
+
+            // Toggle between English and German
+            const newLang = currentLang === 'en' ? 'de' : 'en';
+
+            // Update the HTML tag with the new language
+            document.documentElement.lang = newLang;
+
+            // Reload the page to apply the language change
+            location.reload();
+        }
+    </script>
 
 
 </body>
