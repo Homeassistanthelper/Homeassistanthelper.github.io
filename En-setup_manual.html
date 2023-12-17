@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Assistant Device Setup Manual</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: #4CAF50;
+            color: white;
+        }
+        section {
+            margin-top: 20px;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function redirectToManual() {
+            // Get the customer ID from the input
+            var customerId = document.getElementById('customerId').value;
+
+            // Extract the last two digits of the customer ID
+            var lastTwoDigits = customerId.slice(-2);
+
+            // Define an object to map the redirection URLs based on the last two digits for English
+            var redirectionMapEn = {
+                '00': 'https://example.com/en/redirect-00',
+                '01': 'https://example.com/en/redirect-01',
+                '02': 'https://example.com/en/redirect-02',
+                // Add more mappings as needed
+            };
+
+            // Define an object to map the redirection URLs based on the last two digits for German
+            var redirectionMapDe = {
+                '00': 'https://example.com/de/redirect-00',
+                '01': 'https://example.com/de/redirect-01',
+                '02': 'https://example.com/de/redirect-02',
+                // Add more mappings as needed
+            };
+
+            // Get the redirection URL based on the last two digits for English
+            var redirectionUrlEn = redirectionMapEn[lastTwoDigits];
+
+            // Get the redirection URL based on the last two digits for German
+            var redirectionUrlDe = redirectionMapDe[lastTwoDigits];
+
+            // Redirect to the specified URL based on language preference
+            if (redirectionUrlEn && redirectionUrlDe) {
+                // Assuming English if the last two digits are even, otherwise German
+                var language = lastTwoDigits % 2 === 0 ? 'en' : 'de';
+                var redirectionUrl = language === 'en' ? redirectionUrlEn : redirectionUrlDe;
+                window.location.href = redirectionUrl;
+            } else {
+                alert('Invalid customer ID or redirection URL.');
+            }
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Home Assistant Device Setup Manual</h1>
+    </header>
+
+    <section>
+        <h2>Enter Your Customer ID</h2>
+        <p>Please enter your customer ID to access the setup manual:</p>
+        <input type="text" id="customerId" placeholder="Customer ID">
+        <button onclick="redirectToManual()">Go</button>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Home Assistant Device Setup Manual</p>
+    </footer>
+
+</body>
+</html>
+
