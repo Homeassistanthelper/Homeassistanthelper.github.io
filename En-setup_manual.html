@@ -36,8 +36,8 @@
             // Extract the last two digits of the customer ID
             var lastTwoDigits = customerId.slice(-2);
 
-            // Define an object to map the redirection URLs based on the last two digits for English
-            var redirectionMapEn = {
+            // Define an object to map the redirection URLs based on the last two digits
+            var redirectionMap = {
                 '11': 'https://homeassistanthelper.github.io/En-manual_11.html',
                 '12': 'https://homeassistanthelper.github.io/En-manual_12.html',
                 '13': 'https://homeassistanthelper.github.io/En-manual_13.html',
@@ -53,34 +53,11 @@
                 // Add more mappings as needed
             };
 
-            // Define an object to map the redirection URLs based on the last two digits for German
-            var redirectionMapDe = {
-                '11': 'https://homeassistanthelper.github.io/De-manual_11.html',
-                '12': 'https://homeassistanthelper.github.io/De-manual_12.html',
-                '13': 'https://homeassistanthelper.github.io/De-manual_13.html',
-                '14': 'https://homeassistanthelper.github.io/De-manual_14.html',
-                '21': 'https://homeassistanthelper.github.io/De-manual_21.html',
-                '22': 'https://homeassistanthelper.github.io/De-manual_22.html',
-                '23': 'https://homeassistanthelper.github.io/De-manual_23.html',
-                '24': 'https://homeassistanthelper.github.io/De-manual_24.html',
-                '31': 'https://homeassistanthelper.github.io/De-manual_31.html',
-                '32': 'https://homeassistanthelper.github.io/De-manual_32.html',
-                '33': 'https://homeassistanthelper.github.io/De-manual_33.html',
-                '34': 'https://homeassistanthelper.github.io/De-manual_34.html',
-                // Add more mappings as needed
-            };
+            // Get the redirection URL based on the last two digits
+            var redirectionUrl = redirectionMap[lastTwoDigits];
 
-            // Get the redirection URL based on the last two digits for English
-            var redirectionUrlEn = redirectionMapEn[lastTwoDigits];
-
-            // Get the redirection URL based on the last two digits for German
-            var redirectionUrlDe = redirectionMapDe[lastTwoDigits];
-
-            // Redirect to the specified URL based on language preference
-            if (redirectionUrlEn && redirectionUrlDe) {
-                // Assuming English if the last two digits are even, otherwise German
-                var language = lastTwoDigits % 2 === 0 ? 'en' : 'de';
-                var redirectionUrl = language === 'en' ? redirectionUrlEn : redirectionUrlDe;
+            // Redirect to the specified URL
+            if (redirectionUrl) {
                 window.location.href = redirectionUrl;
             } else {
                 alert('Invalid customer ID or redirection URL.');
@@ -101,6 +78,9 @@
         <button onclick="redirectToManual()">Go</button>
     </section>
 
+    <footer>
+        <p>&copy; 2023 Home Assistant Device Setup Manual</p>
+    </footer>
+
 </body>
 </html>
-
